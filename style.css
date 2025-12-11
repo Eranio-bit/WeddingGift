@@ -1,27 +1,89 @@
-body {
+/* Intro Page */
+
+/* Hide initially for delayed reveal */
+.hidden {
+  opacity: 0;
+}
+
+/* Full-screen container */
+.intro-body {
   margin: 0;
-  font-family: Lucida Bright, system-ui;
-  background: #acbfe9de;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 0;
+  overflow: hidden;
+  background: black;
+  width: 100vw;
   height: 100vh;
 }
 
-#app {
-  background-image: url('image.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background: rgba(248, 210, 175, 0.925);
-  padding: 20px 30px;
-  border-radius: 22px;
-  box-shadow: 8px 8px 20px rgba(0,0,0,0.1);
-  text-align: center;
+/* Full-screen GIF that covers the whole screen */
+.intro-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  animation: fadeIn 1s ease forwards;
 }
 
-#image {
-  max-width: 300px;
-  border-radius: 50px;
-  margin-top: 15px;
+.intro-gif {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* makes it full screen */
+  object-position: center;
+}
+
+/* Text overlay on top of the GIF */
+.intro-overlay-text {
+  position: absolute;
+  bottom: 12%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.7);
+}
+
+.intro-text {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.intro-subtext {
+  font-size: 1rem;
+  margin-top: 8px;
+  opacity: 0.85;
+}
+
+/* Smooth fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: #111;
+  color: #eee;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.qr {
+  background: #222;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(255,255,255,0.08);
+}
+
+.hint {
+  color: #aaa;
+}
+
+.note {
+  color: #bbb;
+}
+
+.modal {
+  background: rgba(0,0,0,0.9);
 }

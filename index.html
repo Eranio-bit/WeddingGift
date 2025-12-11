@@ -1,25 +1,29 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-
-  <!-- WhatsApp Preview -->
-  <meta property="og:title" content="My Cool Project" />
-  <meta property="og:description" content="A simple JS app showing a GitHub-hosted image." />
-  <meta property="og:image" content="https://raw.githubusercontent.com/USERNAME/REPO/main/images/photo.jpg" />
-  <meta property="og:url" content="https://USERNAME.github.io/REPO/" />
-  <meta property="og:type" content="website" />
-
-  <title>My Project</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Wedding Fund</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="app">
-    <h1 id="title"></h1>
-    <img id="image" alt="Wedding Gift" />
+
+  <!-- INTRO -->
+  <div id="intro">
+    <img id="introGif" src="intro.gif" alt="Intro GIF" />
   </div>
-  <link rel="stylesheet" href="style.css">
-  <script src="app.js"></script>
+
+  <!-- MAIN CONTENT -->
+  <div id="main" class="hidden">
+    <section class="card">
+      <h1>Thank You for Celebrating With Us</h1>
+      <p>If you'd like to contribute to our wedding journey, you can scan the QR code below.</p>
+      <img src="intro.gif">
+      <img src="fps-qr.png">
+      <img src="image.png">
+    </section>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
