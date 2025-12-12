@@ -3,16 +3,16 @@
 // --------------------
 const introEl = document.getElementById("intro");
 const introGif = document.getElementById("introGif");
-const titleEl = document.querySelector("h1"); // Get the title text
+const titleEl = document.getElementById("introTitle");
 
 if (introEl && introGif && titleEl) {
   
-  // Initially: show text, hide GIF
+  // Initially: show text, hide GIF (don't load GIF yet)
   introEl.style.opacity = "0";
   introGif.style.opacity = "0";
   titleEl.style.opacity = "1";
   titleEl.style.transition = "opacity 0.5s ease";
-  introEl.style.transition = "opacity 0.5s ease";
+  introEl.style.transition = "opacity 0.1s ease";
   introGif.style.transition = "opacity 0.5s ease";
 
   // 1. Show text for 1 second
@@ -21,8 +21,11 @@ if (introEl && introGif && titleEl) {
     // Fade out text
     titleEl.style.opacity = "0";
     
-    // After text fades out, show GIF
+    // After text fades out, load and show GIF (starts from frame 1)
     setTimeout(() => {
+      
+      // Load the GIF source NOW - this ensures it starts from frame 1
+      introGif.src = "intro.gif";
       
       introEl.style.opacity = "1";
       introGif.style.opacity = "1";
@@ -39,7 +42,7 @@ if (introEl && introGif && titleEl) {
           window.location.href = "invite.html";
         }, 500); // allow fade-out to finish
         
-      }, 1800); // GIF plays for 1800ms
+      }, 3000); // GIF plays for 1800ms
       
     }, 500); // text fade-out duration
     
