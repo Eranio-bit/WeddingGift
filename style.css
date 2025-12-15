@@ -59,6 +59,10 @@ h1 {
 }
 
 /* Collapsible QR */
+
+.qr {
+  width: min(90vw, 420px);
+}
 .qr-toggle {
   background: none;
   border: none;
