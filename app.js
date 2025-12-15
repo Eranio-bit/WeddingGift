@@ -6,70 +6,54 @@ const introGif = document.getElementById("introGif");
 const titleEl = document.getElementById("introTitle");
 
 if (introEl && introGif && titleEl) {
-  
-  // Initially: show text, hide GIF (don't load GIF yet)
+
+  // Initial state
   introEl.style.opacity = "0";
   introGif.style.opacity = "0";
   titleEl.style.opacity = "1";
+
   titleEl.style.transition = "opacity 0.5s ease";
-  introEl.style.transition = "opacity 0.2s ease";
+  introEl.style.transition = "opacity 0.5s ease";
   introGif.style.transition = "opacity 0.5s ease";
+
+  // Prevent browser from preloading the GIF
+  introGif.removeAttribute("src");
 
   // 1. Show text for 1 second
   setTimeout(() => {
-    
+
     // Fade out text
     titleEl.style.opacity = "0";
-    
-    // After text fades out, load and show GIF (starts from frame 1)
+
+    // 2. After text fades out
     setTimeout(() => {
-      
-      // Load the GIF source NOW - this ensures it starts from frame 1
+
+      // Force GIF to start from frame 1
       introGif.src = "intro.gif";
-      
-      introEl.style.opacity = "1";
-      introGif.style.opacity = "1";
-      
-      // 2. After GIF plays for 1800ms, transition to invite page
-      setTimeout(() => {
-        
-        // Fade out GIF
-        introEl.style.opacity = "0";
-        introGif.style.opacity = "0";
-        
-        // 3. After fade-out completes, redirect
-        setTimeout(() => {
-          window.location.href = "invite.html";
-        }, 500); // allow fade-out to finish
-        
-      }, 3000); // GIF plays for 3200ms
-      
-    }, 500); // text fade-out duration
-    
-  }, 1000); // text shows for 1 second
-}
 
+      // 🔒 WAIT UNTIL GIF IS FULLY LOADED
+      const startGifSequence = () => {
 
-// -------------------------
-// INVITATION PAGE HANDLING
-// -------------------------
-const qrImage = document.getElementById("qrImage");
-const modal = document.getElementById("modal");
-const modalImg = document.getElementById("modalImg");
-const closeBtn = document.getElementById("closeBtn");
+        // Ensure first frame is painted
+        requestAnimationFrame(() => {
 
-if (qrImage && modal && modalImg && closeBtn) {
+          introEl.style.opacity = "1";
+          introGif.style.opacity = "1";
 
-  qrImage.addEventListener("click", () => {
-    modal.style.display = "block";
-    modalImg.src = qrImage.src;
-  });
+          // 3. Let GIF play for 1800ms
+          setTimeout(() => {
 
-  closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
+            // Fade out GIF
+            introEl.style.opacity = "0";
+            introGif.style.opacity = "0";
 
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) modal.style.display = "none";
-  });
-}
+            // 4. Redirect after fade-out
+            setTimeout(() => {
+              window.location.href = "invite.html";
+            }, 500);
+
+          }, 1800);
+        });
+      };
+
+      if (intr
